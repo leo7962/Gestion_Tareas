@@ -4,95 +4,95 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EntityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="EntityModelStoreContainer">
-    <EntitySet Name="Materias" EntityType="EntityModel.Store.Materias" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tareas" EntityType="EntityModel.Store.Tareas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoMaterias" EntityType="EntityModel.Store.TipoMaterias" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="MateriasTipoMateria" EntityType="EntityModel.Store.MateriasTipoMateria" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="MateriasTareas" Association="EntityModel.Store.MateriasTareas">
-      <End Role="Materias" EntitySet="Materias" />
-      <End Role="Tareas" EntitySet="Tareas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MateriasTipoMateria_Materias" Association="EntityModel.Store.FK_MateriasTipoMateria_Materias">
-      <End Role="Materias" EntitySet="Materias" />
-      <End Role="MateriasTipoMateria" EntitySet="MateriasTipoMateria" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MateriasTipoMateria_TipoMateria" Association="EntityModel.Store.FK_MateriasTipoMateria_TipoMateria">
-      <End Role="TipoMateria" EntitySet="TipoMaterias" />
-      <End Role="MateriasTipoMateria" EntitySet="MateriasTipoMateria" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Materias">
-    <Key>
-      <PropertyRef Name="IdMateria" />
-    </Key>
-    <Property Name="IdMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Tipo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Tareas">
-    <Key>
-      <PropertyRef Name="IdTareas" />
-    </Key>
-    <Property Name="IdTareas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="materia" Type="int" Nullable="false" />
-    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Materia_IdMateria" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TipoMaterias">
-    <Key>
-      <PropertyRef Name="IdTipoMateria" />
-    </Key>
-    <Property Name="IdTipoMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="MateriasTipoMateria">
-    <Key>
-      <PropertyRef Name="Materia_IdMateria" />
-      <PropertyRef Name="TipoMaterias_IdTipoMateria" />
-    </Key>
-    <Property Name="Materia_IdMateria" Type="int" Nullable="false" />
-    <Property Name="TipoMaterias_IdTipoMateria" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="MateriasTareas">
-    <End Role="Materias" Type="EntityModel.Store.Materias" Multiplicity="1" />
-    <End Role="Tareas" Type="EntityModel.Store.Tareas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Materias">
-        <PropertyRef Name="IdMateria" />
-      </Principal>
-      <Dependent Role="Tareas">
-        <PropertyRef Name="Materia_IdMateria" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MateriasTipoMateria_Materias">
-    <End Role="Materias" Type="EntityModel.Store.Materias" Multiplicity="1" />
-    <End Role="MateriasTipoMateria" Type="EntityModel.Store.MateriasTipoMateria" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Materias">
-        <PropertyRef Name="IdMateria" />
-      </Principal>
-      <Dependent Role="MateriasTipoMateria">
-        <PropertyRef Name="Materia_IdMateria" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MateriasTipoMateria_TipoMateria">
-    <End Role="MateriasTipoMateria" Type="EntityModel.Store.MateriasTipoMateria" Multiplicity="*" />
-    <End Role="TipoMateria" Type="EntityModel.Store.TipoMaterias" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="TipoMateria">
-        <PropertyRef Name="IdTipoMateria" />
-      </Principal>
-      <Dependent Role="MateriasTipoMateria">
-        <PropertyRef Name="TipoMaterias_IdTipoMateria" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="EntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Materias">
+          <Key>
+            <PropertyRef Name="IdMateria" />
+          </Key>
+          <Property Name="IdMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MateriasTipoMateria">
+          <Key>
+            <PropertyRef Name="Materia_IdMateria" />
+            <PropertyRef Name="TipoMaterias_IdTipoMateria" />
+          </Key>
+          <Property Name="Materia_IdMateria" Type="int" Nullable="false" />
+          <Property Name="TipoMaterias_IdTipoMateria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tareas">
+          <Key>
+            <PropertyRef Name="IdTareas" />
+          </Key>
+          <Property Name="IdTareas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="materia" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Materia_IdMateria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoMaterias">
+          <Key>
+            <PropertyRef Name="IdTipoMateria" />
+          </Key>
+          <Property Name="IdTipoMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MateriasTareas">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
+          <End Role="Tareas" Type="Self.Tareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="IdMateria" />
+            </Principal>
+            <Dependent Role="Tareas">
+              <PropertyRef Name="Materia_IdMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MateriasTipoMateria_Materias">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
+          <End Role="MateriasTipoMateria" Type="Self.MateriasTipoMateria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="IdMateria" />
+            </Principal>
+            <Dependent Role="MateriasTipoMateria">
+              <PropertyRef Name="Materia_IdMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MateriasTipoMateria_TipoMateria">
+          <End Role="TipoMaterias" Type="Self.TipoMaterias" Multiplicity="1" />
+          <End Role="MateriasTipoMateria" Type="Self.MateriasTipoMateria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMaterias">
+              <PropertyRef Name="IdTipoMateria" />
+            </Principal>
+            <Dependent Role="MateriasTipoMateria">
+              <PropertyRef Name="TipoMaterias_IdTipoMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntityModelStoreContainer">
+          <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MateriasTipoMateria" EntityType="Self.MateriasTipoMateria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tareas" EntityType="Self.Tareas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMaterias" EntityType="Self.TipoMaterias" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MateriasTareas" Association="Self.FK_MateriasTareas">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="Tareas" EntitySet="Tareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MateriasTipoMateria_Materias" Association="Self.FK_MateriasTipoMateria_Materias">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="MateriasTipoMateria" EntitySet="MateriasTipoMateria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MateriasTipoMateria_TipoMateria" Association="Self.FK_MateriasTipoMateria_TipoMateria">
+            <End Role="TipoMaterias" EntitySet="TipoMaterias" />
+            <End Role="MateriasTipoMateria" EntitySet="MateriasTipoMateria" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EntityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -114,8 +114,8 @@
             <PropertyRef Name="IdMateria" />
           </Key>
           <Property Name="IdMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tipo" Type="String" Nullable="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Tareas" Relationship="EntityModel.MateriasTareas" FromRole="Materias" ToRole="Tareas" />
           <NavigationProperty Name="TipoMaterias" Relationship="EntityModel.MateriasTipoMateria" FromRole="Materias" ToRole="TipoMateria" />
         </EntityType>
@@ -124,9 +124,9 @@
             <PropertyRef Name="IdTareas" />
           </Key>
           <Property Name="IdTareas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="materia" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Materia" Relationship="EntityModel.MateriasTareas" FromRole="Tareas" ToRole="Materias" />
         </EntityType>
         <EntityType Name="TipoMateria">
@@ -134,7 +134,7 @@
             <PropertyRef Name="IdTipoMateria" />
           </Key>
           <Property Name="IdTipoMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Materia" Relationship="EntityModel.MateriasTipoMateria" FromRole="TipoMateria" ToRole="Materias" />
         </EntityType>
         <Association Name="MateriasTareas">
