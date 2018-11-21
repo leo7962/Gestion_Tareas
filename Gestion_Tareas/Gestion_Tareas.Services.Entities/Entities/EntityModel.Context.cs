@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gestion_Tareas.Services.Entities
+namespace Gestion_Tareas.Services.Entities.Entities
 {
     using System;
     using System.Data.Entity;
